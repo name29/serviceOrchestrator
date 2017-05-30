@@ -1,0 +1,44 @@
+{
+    "name": "nat",
+    "expandable": "false",
+    "functional-capability": "nat",
+    "vnf-type": "virtual-machine-kvm",
+    "memory-size": "512",
+    "root-file-system-size": "40",
+    "ephemeral-file-system-size": "0",
+    "swap-disk-size": "0",
+    "CPUrequirements": {
+        "platformType": "x86",
+        "socket": [
+            {
+                "coreNumbers": "1"
+            }
+        ]
+    },
+    "ports": [
+        {
+            "position": "2-2",
+            "label": "MAN",
+            "min": "1",
+            "ipv4-config": "dhcp",
+            "ipv6-config": "none",
+            "name": "eth"
+        },
+        {
+            "position": "1-1",
+            "label": "User",
+            "min": "1",
+            "ipv4-config": "static",
+            "ipv6-config": "none",
+            "name": "eth"
+        },
+        {
+            "position": "0-0",
+            "label": "WAN",
+            "min": "1",
+            "ipv4-config": "dhcp",
+            "ipv6-config": "none",
+            "name": "eth"
+        }
+    ]
+}

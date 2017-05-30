@@ -1,0 +1,5 @@
+*.pyc
+*.xml
+*.log
+nffg_library/*
+vnf_template_library/*
