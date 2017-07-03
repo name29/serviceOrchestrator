@@ -16,13 +16,13 @@ from nffg_library.validator import ValidateNF_FG
 
 class InfrastructureOrchestratorUniversalNode(object):
 
-    def __init__(self, username , password , ip, port, timeout):
+    def __init__(self, username , password , host, port, timeout):
         self.timeout = timeout
-        self.ip = ip
+        self.host = host
         self.port = port
         self.username = username
         self.password = password
-        self.base_url = "http://" + str(ip) + ":" + str(port)
+        self.base_url = "http://" + str(host) + ":" + str(port)
         self.login_url = self.base_url + "/login"
         self.nffg_url = self.base_url + "/NF-FG/%s"
         self.get_status_url = self.base_url + "/NF-FG/status/%s"
