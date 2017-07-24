@@ -124,10 +124,7 @@ class InfrastructureOrchestrator(object):
         logging.debug("The get of NFFG with name %s completed wit HTTP status %s" % (nffg_name, resp.status_code))
         resp.raise_for_status()
 
-        #FIX Wrong answer from UniversalNode
-        data = resp.text.replace('ipv4', 'IPv4')
-
-        nffg_dict = json.loads(data)
+        nffg_dict = json.loads(resp.text)
         ValidateNF_FG().validate(nffg_dict)
         nffg = NF_FG()
         nffg.parseDict(nffg_dict)
@@ -136,9 +133,6 @@ class InfrastructureOrchestrator(object):
     def _addNFFG(self, nffg):
         try:
             data = nffg.getJSON(domain=True)
-
-            # FIX Wrong request from UniversalNode
-            data = data.replace('IPv4','ipv4')
 
             logging.debug("Trying to add the NFFG with name %s" % nffg.name)
             resp = requests.put(self.nffg_url % nffg.name, data=data, headers=self.headers,

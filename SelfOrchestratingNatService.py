@@ -486,7 +486,6 @@ class SelfOrchestratingNatService(object):
         
     def buildVNF(self,template,vnf_id,vnf_name):
         vnf_ports = []
-        #TODO
         for port in template.ports:
             port_range = port.position.split('-')
             if port_range[1] == 'N':
@@ -496,7 +495,6 @@ class SelfOrchestratingNatService(object):
             i_to = int(port_range[1])
             for portId in range(i_from , i_to+1):
                 vnf_ports.append(Port(port.label+':'+str(portId-1)))
-                #print "Adding port "+port.label+':'+str(portId-1)+" to "+vnf_id+"/"+vnf_name
 
         vnf_id = vnf_id
         vnf = VNF(_id=vnf_id, name=vnf_name,vnf_template_location=template.name,ports=vnf_ports)
