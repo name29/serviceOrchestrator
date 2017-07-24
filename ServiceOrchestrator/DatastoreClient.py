@@ -4,8 +4,8 @@ from  vnf_template_library.template import Template
 import json
 
 class DatastoreClient:
-	def __init__(self,base_URL):
-		self.base_URL=base_URL+'/v2/'
+	def __init__(self,base_url,username,password):
+		self.base_URL=base_url+'/v2/'
 		self.headers={"Accept":'application/json','Content-type':'application/json'}
 		self.timeout=1000
 
@@ -27,14 +27,13 @@ class DatastoreClient:
 
 	def get_template_json(self,template_name):
 		resp = requests.get(self.base_URL + 'nf_template/%s' % (template_name), headers=self.headers, timeout=int(self.timeout))
-		logging.debug("HTTP response status code: " + str(resp.status_code))
+		logging.debug("getTemplate %s HTTP response status code: %s " % (template_name,str(resp.status_code)))
 		resp.raise_for_status()
-		logging.debug("Check completed")
-		# dict_resp = ast.literal_eval(resp.text)
 		return resp.text
 
 	def getTemplate(self,template_name):
 		template_json = self.get_template_json(template_name)
+
 		template_dict = json.loads(template_json)
 		ta = Template()
 		ta.parseDict(template_dict)
